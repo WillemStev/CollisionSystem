@@ -125,15 +125,20 @@ in de update_frog_collision functie van FrogCollision gebruik je dan de functies
 
 als beide if statements voldaan zijn heb je goeie kans dat er een botsing is
 
-dan ga je via de add_collision_info functie van CollisionComponent 
+dan ga je via de add_collision_info functie van CollisionComponent
+
 * een tuple ```(ColliderTag tag_component_j, vector<int> collision_box_coords_i, vector<int> collision_box_coords_j, (char)'i')```  toevoegen aan de vector collision_info van component i
+  
 * een tuple ```(ColliderTag tag_component_i, vector<int> collision_box_coords_i, vector<int> collision_box_coords_j, (char)'j')```  toevoegen aan de vector collision_info van component j
+  
 collison_info is een member variable van CollisionComponent
 
 dus component i krijgt via deze tuple de volgende info:
 * de tag_component_j laat weten wat de ColliderTag is van het andere object
 * collision_box_coords_i & collision_box_coords_j geven de coordinaten van collision boxes van componenten i en j
 * de char 'i' laat component i weten dat hij component i is --> dit is belangrijk wanneer de volgorde van de botsing van de belang is
+
+hetzelfde voor j
 
 \
 \
@@ -146,7 +151,7 @@ in deze functie gebeurt de collision detection tussen collision pairs (i, j)
 
 het verloop van de functie ziet er als volgt uit
 
-* in FrogCollision
+in FrogCollision
 ``` Cpp
 void FrogCollision::collision_status() {
 
@@ -182,6 +187,7 @@ void FrogCollision::collision_status() {
 
 in de FrogCollision zal je de Tag PICKUP niet checken; dit doe je in de collision_status() functie van FruitCollision
 
+in FruitCollision
 ``` Cpp
 void FruitCollision::collision_status() {
         ...
