@@ -193,4 +193,45 @@ void FruitCollision::collision_status() {
 ```
 
 # Collision detection
+## locatie van componenten i en j ten opzichte van elkaar NIET belangrijk
+als de plaats van component i tov component j niet boeit dan is de voorwaarde voor collision heel simpel: de 2 collision boxes moeten gewoon overlappen
 
+dit is zo in elk collision pair behalve Frog -- Terrain, Enemy -- Terrain
+
+als 2 collision boxes overlappen is deze voorwaarde voldaan
+
+```x1_i < x2_j && x1_j < x2_i) && (y1_i < y2_j && y1_j < y2_i```
+
+
+![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/dc168465-4975-49cc-b130-ece68fefeef0)
+
+## locatie van componenten i en j ten opzichte van elkaar WEL belangrijk
+
+we houden in FrogCollision de variabelen ```is_colliding_x_left```, ```is_colliding_x_right```, ```is_colliding_y_down```, ```is_colliding_y_up``` bij
+
+bvb hier ```is_colliding_x_right``` geldt want de Terrain tile botst tegen de rechterkant vd Frog; de rechterkant van de Frog covert een volledige tile dus zeggen we dat er full contact is
+
+![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/84b81410-3590-49b8-b347-d7a3b8295723)
+
+
+bij het collision pair Frog -- Terrain moet je opletten
+
+Hier mag je bvb geen zijlings contact veronderstellen maar wel neerwaarts contact. We zullen in het begin vd collision detection van Frog -- Terrain dus enkel ```is_colliding_x_left```, ```is_colliding_x_right```, ```is_colliding_y_down```, ```is_colliding_y_up``` true veronderstellen als er full contact is
+
+![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/232056d2-c941-4220-8a9c-d2708505b513)
+
+er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact
+
+in dat geval werken we met een treshold: als het kleinste verschil in x-coordinaten ```min(x2_i - x1_j, x2_j - x1_i) > treshold``` (op de figuur is x2_i - x1_j > treshold) dan is er teveel overlap in de x-richting om te kunnen zeggen dat er zijlings contact is
+
+als ```min(x2_i - x1_j, x2_j - x1_i) <= treshold``` dan veronderstellen we zijlings contact; de waarde van treshold is wat gokken
+
+als de strategie met de treshold niet realistisch overkomt in de game moeten we hem gwn wat aanpassen
+
+![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/9b2cf442-c650-4a98-9dc6-67b45ca801c8)
+
+\
+\
+## Correctie vd positie
+
+bij collision Frog -- Terrain en Enemy -- Terrain zakken de Frog en Enemy wat in het terrain, we moeten dan de coordinaten van Frog en Enemy aanpassen zodat hun collision boxes raken aan de collision boxes van Terrain
