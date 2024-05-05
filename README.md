@@ -220,7 +220,7 @@ Hier mag je bvb geen zijlings contact veronderstellen maar wel neerwaarts contac
 
 ![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/232056d2-c941-4220-8a9c-d2708505b513)
 
-er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact
+er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact --> in dit geval zal er SLECHTS 1 TERRAIN TILE in contact komen met de Frog
 
 in dat geval werken we met een treshold: als het kleinste verschil in x-coordinaten ```min(x2_i - x1_j, x2_j - x1_i) > treshold``` (op de figuur is x2_i - x1_j > treshold) dan is er teveel overlap in de x-richting om te kunnen zeggen dat er zijlings contact is
 
