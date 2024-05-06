@@ -217,7 +217,7 @@ het gevallenonderscheid van de collision detection tussen Frog en Terrain is een
 
 we houden in FrogCollision de variabelen ```is_colliding_x_left```, ```is_colliding_x_right```, ```is_colliding_y_down```, ```is_colliding_y_up``` bij
 
-bvb hier ```is_colliding_x_right``` geldt want de Terrain tile botst tegen de rechterkant vd Frog; de rechterkant van de Frog covert minstens 32 pixels aan contactoppervlak met de tiles van terrain ==> er is full contact
+bvb hier ```is_colliding_x_right``` geldt want de Terrain tile botst tegen de rechterkant vd Frog; de rechterkant van de Frog covert minstens 32 pixels aan contactoppervlak met tiles van terrain ==> er is full contact
 
 ![image](https://github.com/WillemStev/CollisionSystem/assets/153719651/84b81410-3590-49b8-b347-d7a3b8295723)
 
@@ -230,7 +230,9 @@ Hier mag je bvb geen zijlings contact veronderstellen maar wel neerwaarts contac
 
 er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact --> in dit geval zal er SLECHTS 1 TERRAIN TILE in contact komen met de Frog
 
-in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` (op de figuur is y2_i - y1_j > treshold) dan is er te weinig overlap in de y-richting om te kunnen zeggen dat er zijlings contact is
+in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` (op de figuur is y2_i - y1_j < treshold) dan is er teveel overlap in de y-richting om te kunnen zeggen dat er neerwaarts contact is en moeten we zijlings contact veronderstellen
+
+hier is er niet te veel overlap in de y-richting dus kunnen we neerwaarts contact veronderstellen, als de Frog verticaal naar beneden in deze positie landt is het ook logisch dat we neerwaarts contact veronderstellen; als de collision detection performant gebeurt zal de Frog bij zijn landing niet door de treshold barriere breken
 
 als ```min(y2_i - y1_j, y2_j - y1_i) <= treshold``` dan veronderstellen we neerwaarts contact; de waarde van treshold is wat gokken
 
