@@ -230,9 +230,9 @@ Hier mag je bvb geen zijlings contact veronderstellen maar wel neerwaarts contac
 
 er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact --> in dit geval zal er SLECHTS 1 TERRAIN TILE in contact komen met de Frog
 
-in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` (op de figuur is y2_i - y1_j > treshold) dan is er teveel overlap in de y-richting om te kunnen zeggen dat er verticaal contact is
+in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` (op de figuur is y2_i - y1_j > treshold) dan is er te weinig overlap in de y-richting om te kunnen zeggen dat er zijlings contact is
 
-als ```min(y2_i - y1_j, y2_j - y1_i) <= treshold``` dan veronderstellen we horizontaal contact; de waarde van treshold is wat gokken
+als ```min(y2_i - y1_j, y2_j - y1_i) <= treshold``` dan veronderstellen we neerwaarts contact; de waarde van treshold is wat gokken
 
 als de strategie met de treshold niet realistisch overkomt in de game moeten we hem gwn wat aanpassen
 
