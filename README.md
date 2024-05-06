@@ -1,3 +1,60 @@
+# Collision component gebruiken in een GameObject component (FrogCollision in Frog)
+
+in de hpp files van de collision component klassen staan de member variables die alle nodige info geven mbt collision van het bijhorend object vanboven
+
+bvb bij de collision component FrogCollision houden we 6 member variables ```is_colliding_x_left```, ```is_colliding_x_right```, ```is_colliding_y_down```, ```is_colliding_y_up```, ```contact_enemy```, ```contact_enemy_projectile``` bij die info geven over het contact met het Terrain, Enemies en Enemy Projectiles
+
+de declaratie van FrogCollision in de hpp file frog_collision.hpp ziet er zo uit
+
+``` Cpp
+class FrogCollision : public CollisionComponent {
+  public:
+    ...
+
+    bool get_is_colliding_x_left();
+    bool get_is_colliding_x_right();
+    bool get_is_colliding_y_down();
+    bool get_is_colliding_y_up();
+    bool get_contact_enemy();
+    bool get_contact_enemy_projectile();
+
+  private:
+    // variables that obtain the collision info of the Frog
+    bool is_colliding_x_left;
+    bool is_colliding_x_right;
+    bool is_colliding_y_down;
+    bool is_colliding_y_up;
+
+    bool contact_enemy;
+    bool contact_enemy_projectile;
+
+    ...
+};
+```
+
+in de klasse Frog kan je dan met de methods ```get_is_colliding_x_left```, ```get_is_colliding_x_right```, ```get_is_colliding_y_down```, ```get_is_colliding_y_up```, ```get_contact_enemy```, ```get_contact_enemy_projectile``` makkelijk kijken welke contacten er zijn
+
+bvb de velocity_update functie in mijn FrogTest klasse ziet er zo uit --> puur om vlot alle gevallen uit te testen van Frog -- Terrain collision
+
+``` Cpp
+void TestColFrog::velocity_update() {
+    velocity_x_current = 0;
+    velocity_y_current = 0;
+    if (InputManager::get_instance().is_action_down("LEFT") && frog_collision->get_is_colliding_x_left() == false) {
+        this->velocity_x_current = -100;
+    }
+    if (InputManager::get_instance().is_action_down("RIGHT") && frog_collision->get_is_colliding_x_right() == false) {
+        this->velocity_x_current = 100;
+    }
+    if (InputManager::get_instance().is_action_down("DOWN") && frog_collision->get_is_colliding_y_down() == false) {
+        this->velocity_y_current = 100;
+    }
+    if (InputManager::get_instance().is_action_down("JUMP") && frog_collision->get_is_colliding_y_up() == false) {
+        this->velocity_y_current = -100;
+    }
+}
+```
+
 # mask principe
 om héél snel te checken of 2 objecten met elkaar horen te colliden of niet wordt in de opgave voorgesteld om te werken met een Tag en een Mask
 
