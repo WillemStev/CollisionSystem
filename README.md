@@ -1,4 +1,4 @@
-# Collision component gebruiken in een GameObject component (FrogCollision in Frog)
+# Collision component gebruiken in een GameObject component (bvb FrogCollision in Frog)
 
 in de hpp files van de collision component klassen staan de member variables die alle nodige info geven mbt collision van het bijhorend object vanboven
 
