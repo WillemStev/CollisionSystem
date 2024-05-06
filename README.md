@@ -141,7 +141,7 @@ c_vector[j]->get_tag() // c_vector[j] is een CollisionComponent object
 # CollisionSystem
 ## 1e for loop
 * vul een vector c_vector met alle huidige collision components in de game
-* clear de vector collision_info van elke collision component (vector collision_info leg ik later uit)
+* resize de vector collision_info naar 0 van elke collision component (vector collision_info leg ik later uit) --> voordeel van vector.resize(0) tov vector.clear(): er moet niet elke update functie opnieuw memory gealloceerd en gedealloceerd worden
 
 elk object bevat een collision component (Frog, Fruit, Kogel); voor het Terrain zal elke tile van het Terrain apart toegevoegd moeten worden als collision component
 
