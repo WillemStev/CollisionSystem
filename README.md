@@ -34,7 +34,8 @@ class FrogCollision : public CollisionComponent {
 
 in de klasse Frog kan je dan met de methods ```get_is_colliding_x_left```, ```get_is_colliding_x_right```, ```get_is_colliding_y_down```, ```get_is_colliding_y_up```, ```get_contact_enemy```, ```get_contact_enemy_projectile``` makkelijk kijken welke contacten er zijn
 
-bvb de velocity_update functie in mijn FrogTest klasse ziet er zo uit --> puur om vlot alle gevallen uit te testen van Frog -- Terrain collision
+bvb de velocity_update functie in mijn FrogTest klasse ziet er zo uit --> puur om vlot alle gevallen uit te testen van Frog -- Terrain collision\
+(frog_collision is de collision component FrogCollision gebruikt in FrogTest)
 
 ``` Cpp
 void TestColFrog::velocity_update() {
