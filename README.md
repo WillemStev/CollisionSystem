@@ -230,9 +230,9 @@ Hier mag je bvb geen zijlings contact veronderstellen maar wel neerwaarts contac
 
 er is ook een speciaal geval mogelijk: geen full contact in de 4 richtingen maar wel contact --> in dit geval zal er SLECHTS 1 TERRAIN TILE in contact komen met de Frog
 
-in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` (op de figuur is y2_i - y1_j < treshold) dan is er teveel overlap in de y-richting om te kunnen zeggen dat er neerwaarts contact is en moeten we zijlings contact veronderstellen
+in dat geval werken we met een treshold: als het kleinste verschil in y-coordinaten ```min(y2_i - y1_j, y2_j - y1_i) > treshold``` dan is er teveel overlap in de y-richting om te kunnen zeggen dat er neerwaarts contact is en moeten we zijlings contact veronderstellen
 
-hier is er niet te veel overlap in de y-richting dus kunnen we neerwaarts contact veronderstellen, als de Frog verticaal naar beneden in deze positie landt is het ook logisch dat we neerwaarts contact veronderstellen; als de collision detection performant gebeurt zal de Frog bij zijn landing niet door de treshold barriere breken
+op de figuur is ```y2_i - y1_j < treshold``` ==> niet te veel overlap in de y-richting dus kunnen we neerwaarts contact veronderstellen, als de Frog verticaal naar beneden in deze positie landt is het ook logisch dat we neerwaarts contact veronderstellen; als de collision detection performant gebeurt zal de Frog bij zijn landing niet door de treshold barriere breken
 
 als ```min(y2_i - y1_j, y2_j - y1_i) <= treshold``` dan veronderstellen we neerwaarts contact; de waarde van treshold is wat gokken
 
